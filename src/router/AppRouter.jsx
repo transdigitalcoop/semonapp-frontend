@@ -1,14 +1,16 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AuthRoutes } from "../auth/routes/AuthRoutes";
 import { SemonAppRoutes } from "../semonapp/routes/SemonAppRoutes";
+import { useEffect } from "react";
+import { useAuthStore } from "../hooks";
 
 export const AppRouter = () => {
-  // const { status, checkAuthToken } = useAuthStore();
+  const { status, checkAuthToken } = useAuthStore();
   // const authStatus = "not-authenticated";
-  const status = "authenticated";
-  //   useEffect(() => {
-  //     checkAuthToken();
-  //   }, []);
+  // const status = "authenticated";
+  useEffect(() => {
+    checkAuthToken();
+  }, []);
 
   if (status === "checking") {
     return (

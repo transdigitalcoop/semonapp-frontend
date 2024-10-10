@@ -1,4 +1,34 @@
+import { useEffect } from "react";
+import { useAuthStore, useForm } from "../../hooks";
+import Swal from "sweetalert2";
+
+const loginFormFields = {
+  correoInstitucional: "",
+  Contraseña: "",
+};
+
 export const LoginPage = () => {
+  const { startLogin, errorMessage } = useAuthStore();
+  const {
+    correoInstitucional,
+    Contraseña,
+    onInputChange: onLoginInputChange,
+  } = useForm(loginFormFields);
+
+  const loginSubmit = (event) => {
+    event.preventDefault();
+    startLogin({
+      correoInstitucional: correoInstitucional,
+      contraseña: Contraseña,
+    });
+  };
+
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      Swal.fire("Error en la autenticacion", errorMessage, "error");
+    }
+  }, [errorMessage]);
+
   return (
     <>
       <div className="h-screen bg-slate-100">
@@ -15,7 +45,7 @@ export const LoginPage = () => {
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form action="#" method="POST" className="space-y-6">
+            <form onSubmit={loginSubmit} method="POST" className="space-y-6">
               <div>
                 <label
                   htmlFor="email"
@@ -25,11 +55,11 @@ export const LoginPage = () => {
                 </label>
                 <div className="mt-2">
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
+                    name="correoInstitucional"
+                    type="text"
                     required
-                    autoComplete="email"
+                    value={correoInstitucional}
+                    onChange={onLoginInputChange}
                     className="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6 h-10"
                   />
                 </div>
@@ -46,11 +76,11 @@ export const LoginPage = () => {
                 </div>
                 <div className="mt-2">
                   <input
-                    id="password"
-                    name="password"
+                    name="Contraseña"
                     type="password"
                     required
-                    autoComplete="current-password"
+                    value={Contraseña}
+                    onChange={onLoginInputChange}
                     className="block w-full rounded-md border-0 py-1.5 text-slate-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6 h-10"
                   />
                 </div>
