@@ -6,8 +6,10 @@ import {
 import { UserIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const Header = ({ sidebarOpen, setSidebarOpen }) => {
+  const{user} = useSelector((state) => state.auth);
   const [modalOpen, setModalOpen] = useState(true);
 
   return (
@@ -24,7 +26,7 @@ export const Header = ({ sidebarOpen, setSidebarOpen }) => {
           className="flex items-center cursor-pointer gap-2 p-2 mr-2"
           onClick={() => setModalOpen(!modalOpen)}
         >
-          <h1 className="md:text-xl font-bold text-slate-800">Felipe</h1>
+          <h1 className="md:text-xl font-bold text-slate-800">{user.primerNombre}</h1>
           <img
             src=""
             alt="Perfil"

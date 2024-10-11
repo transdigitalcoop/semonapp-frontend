@@ -1,4 +1,8 @@
-export const TableIntegrants = () => {
+import { useSelector } from "react-redux";
+
+export const TableIntegrants = ({Integrant}) => {
+  const {integrants} = useSelector(state => state.integrants);
+  
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -11,25 +15,30 @@ export const TableIntegrants = () => {
                     Nombre
                   </th>
                   <th scope="col" className=" px-6 py-4">
+                    Semestre
+                  </th>
+                  <th scope="col" className=" px-6 py-4">
                     Programa
                   </th>
                   <th scope="col" className=" px-6 py-4">
-                    Status
-                  </th>
-                  <th scope="col" className=" px-6 py-4">
-                    Acciones
+                    Fecha vinculacion
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b dark:border-slate-300">
-                  <td className="whitespace-nowrap  px-6 py-4 font-medium">
-                    1
-                  </td>
-                  <td className="whitespace-nowrap  px-6 py-4">Mark</td>
-                  <td className="whitespace-nowrap  px-6 py-4">Otto</td>
-                  <td className="whitespace-nowrap  px-6 py-4">@mdo</td>
-                </tr>
+                {
+                integrants.map((integrant) => (
+                  <tr key={integrant._id} className="border-b dark:border-slate-300">
+                    <td className="whitespace-nowrap  px-6 py-4">{`${integrant.primerNombre} ${integrant.primerApellido}`}</td>
+                    <td className="whitespace-nowrap  px-6 py-4">{integrant.semestre}</td>
+                    <td className="whitespace-nowrap  px-6 py-4">{integrant.programa}</td>
+                    <td className="whitespace-nowrap  px-6 py-4">{new Date(integrant.fechaVinculacion).toLocaleDateString("es-ES", {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    })}</td>
+                  </tr>
+                  ))}
               </tbody>
             </table>
           </div>

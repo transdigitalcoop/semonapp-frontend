@@ -15,7 +15,7 @@ export const useAuthStore = () => {
             const { data } = await semonApi.post("/auth", { correoInstitucional, contraseña });
             localStorage.setItem("token", data.token);
             localStorage.setItem("token-init-date", new Date().getTime());
-            dispatch(onLogin({ name: data.nombre, uid: data.uid }));
+            dispatch(onLogin({ name: data.primerNombre, uid: data.uid }));
 
         } catch (error) {
             dispatch(onLogout("Credenciales incorrectas"));
@@ -50,10 +50,9 @@ export const useAuthStore = () => {
 
         try {
             const { data } = await semonApi.get("auth/renew");
-            console.log(data)
             localStorage.setItem("token", data.token);
             localStorage.setItem("token-init-date", new Date().getTime());
-            dispatch(onLogin({ name: data.nombre, uid: data.uid }));
+            dispatch(onLogin({ primerNombre: data.primerNombre, uid: data.uid }));
         } catch (error) {
             localStorage.clear();
             dispatch(onLogout());

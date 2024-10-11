@@ -5,12 +5,10 @@ import { useEffect } from "react";
 import { useAuthStore } from "../hooks";
 
 export const AppRouter = () => {
-  const { status, checkAuthToken } = useAuthStore();
+  const { status } = useAuthStore();
   // const authStatus = "not-authenticated";
   // const status = "authenticated";
-  useEffect(() => {
-    checkAuthToken();
-  }, []);
+
 
   if (status === "checking") {
     return (

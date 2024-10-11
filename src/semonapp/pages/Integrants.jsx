@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TableIntegrants } from "../components";
 import { SemonAppLayout } from "../layout/SemonAppLayout";
 import { UserPlusIcon as UserIconSolid } from "@heroicons/react/24/solid";
 import { UserPlusIcon as UserIconOutline } from "@heroicons/react/24/outline";
+import { useIntegrantsStore } from "../../hooks";
+
 
 export const Integrants = () => {
   // Estado para manejar el hover
-  const [isHovered, setIsHovered] = useState(false);
 
+  const [isHovered, setIsHovered] = useState(false);
+  const { startLoadingIntegrants} = useIntegrantsStore();
+
+
+  useEffect(() => {
+    startLoadingIntegrants();
+  }, [])
+  
   return (
     <SemonAppLayout>
       <div className="w-full mx-auto bg-slate-50 rounded-lg h-full border-2 shadow-sm shadow-slate-500">
@@ -31,7 +40,7 @@ export const Integrants = () => {
             </span> */}
           </div>
         </div>
-        <TableIntegrants />
+        <TableIntegrants/>
       </div>
     </SemonAppLayout>
   );
