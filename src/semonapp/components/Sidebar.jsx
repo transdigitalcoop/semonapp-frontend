@@ -32,18 +32,18 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             <UserIcon className="IconsSidebar" />
             <h2 className="">Integrantes</h2>
           </NavLink>
-          <NavLink className="ItemsSidebar">
+          <NavLink to="/Proyectos" className="ItemsSidebar">
             <RocketLaunchIcon className="IconsSidebar" />
             <h2 className="">Proyectos</h2>
           </NavLink>
-          <NavLink className="ItemsSidebar">
+          <NavLink to="/Certificados" className="ItemsSidebar">
             <AcademicCapIcon className="IconsSidebar" />
             <h2 className="">Certificados</h2>
           </NavLink>
         </div>
         <div className="flex flex-col text-white mt-3 gap-2">
           <p className="text-lg text-slate-500 mx-8">APPS</p>
-          <NavLink to="" className="ItemsSidebar">
+          <NavLink to="/Calendario" className="ItemsSidebar">
             <CalendarDaysIcon className="IconsSidebar" />
             <h2 className="">Calendario</h2>
           </NavLink>
