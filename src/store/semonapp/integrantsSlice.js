@@ -15,7 +15,13 @@ export const integrantsSlice = createSlice({
         setError: (state, { payload }) => {
         state.error = payload;
         },
+        onLogoutIntegrants: (state) => {  
+            state.integrants = [];
+            state.loading = true;
+            state.error = null;
+        
+        }
     },
     });
 
-export const { onLoadIntegrants, setError } = integrantsSlice.actions;
+export const { onLoadIntegrants, onLogoutIntegrants, setError } = integrantsSlice.actions;

@@ -7,10 +7,20 @@ import { UserIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useAuthStore } from "../../hooks/useAuthStore";
+import { useIntegrantsStore } from "../../hooks/useIntegrantsStore";
+
 
 export const Header = ({ sidebarOpen, setSidebarOpen }) => {
   const{user} = useSelector((state) => state.auth);
   const [modalOpen, setModalOpen] = useState(true);
+  const {startLogout} =useAuthStore();
+  const {startLogoutIntegrants} = useIntegrantsStore();
+
+  const handleLogout = () => {
+    startLogout();
+    startLogoutIntegrants();
+  };
 
   return (
     <>
@@ -48,7 +58,7 @@ export const Header = ({ sidebarOpen, setSidebarOpen }) => {
               <UserIcon className="size-6" /> Perfil
             </NavLink>
           </div>
-          <button className="block border rounded-md p-2 mx-auto my-2">
+          <button className="block border rounded-md p-2 mx-auto my-2" onClick={handleLogout}>
             Cerrar Sesion
           </button>
         </div>

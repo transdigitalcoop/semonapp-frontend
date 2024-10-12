@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import semonApi from '../api/semonApi';
-import { onLoadIntegrants } from '../store/semonapp/integrantsSlice'; 
+import { onLoadIntegrants, onLogoutIntegrants } from '../store/semonapp/integrantsSlice'; 
 
 export const useIntegrantsStore = () => {
     const dispatch = useDispatch();
@@ -14,9 +14,13 @@ export const useIntegrantsStore = () => {
             console.log(error);
         }
     }
+    const startLogoutIntegrants = () => {
+        dispatch(onLogoutIntegrants([]));
+    }
 
     return {
         integrants,
-        startLoadingIntegrants
+        startLoadingIntegrants,
+        startLogoutIntegrants
     }
 }
