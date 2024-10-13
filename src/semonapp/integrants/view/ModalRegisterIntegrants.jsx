@@ -14,7 +14,7 @@ export const ModalRegisterIntegrants = ({RegisterIntegrant, setRegisterIntegrant
         return () => document.removeEventListener("click", clickHandler);
       }, [RegisterIntegrant, setRegisterIntegrant]);
   return (
-    <div className="absolute bg-gray-900/75 flex justify-center items-center h-full top-0 w-screen left-0">
+    <div className="absolute bg-gray-900/75 flex justify-center items-center h-screen top-0 w-screen left-0">
         <div className="bg-white w-[90%] border-2 h-[calc(100vh-200px)] md:h-[90%] md:w-1/2" ref={modal} >
             <div className="relative">
                 <button onClick={()=>setRegisterIntegrant(false)}><XMarkIcon className="size-8 absolute top-0 right-0 m-2"/></button>
